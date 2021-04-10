@@ -1,0 +1,80 @@
+
+
+.title{
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+
+.input{
+    margin-bottom: 100px;
+    margin-top: 40px;
+    input{
+        width: 90%;
+        padding: 15px 25px;
+        font-size: 26px;
+        border-radius: 10px;
+        border: none;
+        background-color: rgba(18, 18, 19, 0.432);
+        color: white;
+        font-weight: bold;
+        box-shadow: 0.1px 0.1px 3px #696969; 
+    }
+}
+    
+
+.actions {
+    display: flex;
+    justify-content: space-around;
+    .action{
+        button {
+            padding: 10px;
+            font-size: 22px;
+            border-radius: 10%;
+            border: none;
+            color: white;
+        }
+        .ingreso{
+            background-color: rgb(13, 126, 41);
+        }    
+        .gasto{
+            background-color: rgb(187, 66, 66);
+        }
+    }
+}
+
+
+
+
+.gastos-ingresos-container{
+    display: flex;
+    justify-content: space-between;
+    .container{
+        width: 49%;
+        margin-top: 30px;
+        border-radius: 5px;
+        box-shadow: 0.1px 0.1px 8px #696969; 
+        .title{
+            font-size: 25px;
+
+        }
+        ul {
+            list-style: none;
+            li{
+                padding: 13px 0;
+                display: flex;
+                justify-content: space-around;
+                font-size: 19px;
+                .cantidad{
+                    font-weight: bolder;
+                }
+            }
+        }
+    }
+    .gasto{
+        background-color:salmon;
+    }
+    .ingreso{
+        background-color: darkcyan;
+    }
+}

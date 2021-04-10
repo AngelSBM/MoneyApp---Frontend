@@ -1,0 +1,52 @@
+
+.back {
+    margin-bottom: 40px;
+    text-align: left;
+    padding: 0 30px;
+    button {
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+    }
+}
+
+
+.title {
+    font-size: 30px;
+    color: white;
+}
+
+
+.inputs{
+    margin-top: 30px;
+    margin-bottom: 200px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    .input{
+        display: flex;
+        flex-direction: column;
+        .title{
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        input, select{
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 20px;
+            border: none;
+            color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, .4);
+        }           
+    }            
+}
+
+.button{
+    button {
+        padding: 15px;
+        font-size: 20px;
+        border-radius: 5px;
+        border: none;
+    }
+}

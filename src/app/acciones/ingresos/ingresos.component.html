@@ -1,0 +1,50 @@
+<div class="ingresos-container container">
+
+    <div class="back">
+        <button (click)="regresar()">Regresar</button>
+    </div>
+
+    <h5 class="title">Ingresos</h5>
+
+    <form 
+            [formGroup]="inputsIngresos"
+            (ngSubmit)="agregarIngreso()">
+
+        <div class="inputs">
+
+            <div class="input">
+                <span class="title">
+                    Digíte la cantidad
+                </span>
+                <input type="number" formControlName="cantidad">
+            </div>
+    
+            <div class="input">
+                <span class="title">
+                    Seleccione la categoría del ingreso
+                </span>
+                <select formControlName="ingreso">
+                    <option value="">Selccionar cateogoria</option>
+                    <option value="Ahorro">Ahorro</option>
+                    <option value="Depósito">Depósitos</option>
+                    <option value="Salario">Salario</option>
+                    
+                </select>
+            </div>
+    
+        </div>
+
+        <div class="alert" *ngIf="!valid">
+            TODOS LOS CAMPOS SON OBLIGATIOS
+        </div>
+
+
+        <div class="button">
+            <button type="submit">Añadir gasto</button>
+        </div>
+
+    </form>
+   
+
+</div>
+

@@ -1,0 +1,57 @@
+<div class="saldo-container container">
+
+    <h3 class="title">Saldo:</h3>
+
+    <form [formGroup]="saldoInput">
+
+        <div class="input">
+            <input type="text" formControlName="saldo">
+        </div>
+
+    </form>
+
+
+    <div class="actions">
+        
+        <div class="action">
+            <button class="gasto" routerLink="/gastos"><i class="fa fa-minus"></i>- añadir gasto</button>
+        </div>  
+
+            
+        <div class="action">
+            <button class="ingreso" routerLink="/ingresos"><i class="fa fa-plus"></i>+ añadir ingreso</button>
+        </div>  
+
+    </div>
+
+    <div class="gastos-ingresos-container">
+        
+        <div class="container gasto">
+
+            <span class="title">Gastos</span>
+            
+            <ul class="list">
+                <li *ngFor="let gasto of [1,1,1,1,1,1]">
+                    <div class="nombre">Bebida</div>
+                    <span class="cantidad">100</span>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="container ingreso">
+            
+            <span class="title">Ingresos</span>
+
+            <ul class="list">
+                <li *ngFor="let ingreso of [1,1,1,1,1,1]">
+                    <div class="nombre">vigilancia</div>
+                    <span class="cantidad">1000</span>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
