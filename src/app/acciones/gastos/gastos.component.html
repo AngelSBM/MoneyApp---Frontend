@@ -1,13 +1,13 @@
 <div class="ingresos-container container">
 
     <div class="back">
-        <button (click)="regresar()">Regresar</button>
+        <button >Regresar</button>
     </div>
 
     <h5 class="title">Gastos</h5>
 
     <form 
-            [formGroup]="inputsGastos"
+            [(formGroup)]="inputsGastos"
             (ngSubmit)="agregarGasto()">
 
         <div class="inputs">
@@ -23,7 +23,7 @@
                 <span class="title">
                     Seleccione la categoría del gasto
                 </span>
-                <select formControlName="gasto">
+                <select formControlName="gasto" id="categories">
                     <option value="">Selccionar cateogoria</option>
                     <option value="Autómovil">Automóvil</option>
                     <option value="Casa">Casa</option>
@@ -38,6 +38,23 @@
                     <option value="Ropa">Ropa</option>
                     <option value="salud">Salud</option>
                 </select>
+
+                <div class="pop-up">
+                    
+                    <a (click)="mostrar = !mostrar"> Añadir categoria </a>
+    
+                    <div *ngIf="mostrar" class="agregar-categoria">
+                        
+    
+                        <input type="text" class="addCat" id="nuevaCategoria">
+                
+                        <button (click)="crearCategoria( $event )">Añadir</button>
+                
+                    </div>
+                    
+                </div>
+
+
             </div>
     
         </div>
@@ -52,6 +69,6 @@
         </div>
 
     </form>
-   
+    
 
 </div>

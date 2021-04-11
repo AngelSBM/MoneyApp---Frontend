@@ -2,10 +2,10 @@
 
     <h3 class="title">Saldo:</h3>
 
-    <form [formGroup]="saldoInput">
+    <form>
 
         <div class="input">
-            <input type="text" formControlName="saldo">
+            <input [(ngModel)]="saldo" [ngModelOptions]="{standalone: true}"  type="text" >
         </div>
 
     </form>
@@ -14,12 +14,12 @@
     <div class="actions">
         
         <div class="action">
-            <button class="gasto" routerLink="/gastos"><i class="fa fa-minus"></i>- añadir gasto</button>
+            <button class="gasto" routerLink="/gastos"><i class="fa fa-minus"></i> añadir gasto</button>
         </div>  
 
             
         <div class="action">
-            <button class="ingreso" routerLink="/ingresos"><i class="fa fa-plus"></i>+ añadir ingreso</button>
+            <button class="ingreso" routerLink="/ingresos"><i class="fa fa-plus"></i> añadir ingreso</button>
         </div>  
 
     </div>
@@ -30,10 +30,12 @@
 
             <span class="title">Gastos</span>
             
-            <ul class="list">
-                <li *ngFor="let gasto of [1,1,1,1,1,1]">
-                    <div class="nombre">Bebida</div>
-                    <span class="cantidad">100</span>
+            <ul class="list" *ngIf="gastos.length">
+                <li *ngFor="let gasto of gastos">
+                    <div class="nombre">{{ gasto.gasto }}</div>
+                    <span class="cantidad">{{ gasto.cantidad }}
+                        <button (click)="eliminarGasto( gasto._id )"><i class="fas fa-minus"></i></button>
+                    </span>                    
                 </li>
             </ul>
 
@@ -43,10 +45,12 @@
             
             <span class="title">Ingresos</span>
 
-            <ul class="list">
-                <li *ngFor="let ingreso of [1,1,1,1,1,1]">
-                    <div class="nombre">vigilancia</div>
-                    <span class="cantidad">1000</span>
+            <ul class="list" *ngIf="ingresos.length">
+                <li *ngFor="let ingreso of ingresos">
+                    <div class="nombre">{{ ingreso.ingreso }}</div>
+                    <span class="cantidad">{{ ingreso.cantidad }}
+                        <button (click)="eliminarIngreso( ingreso._id )"><i class="fas fa-minus"></i></button>
+                    </span>                    
                 </li>
             </ul>
 
