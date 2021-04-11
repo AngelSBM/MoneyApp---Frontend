@@ -12,34 +12,51 @@ export class SaldoComponent implements OnInit {
   saldo: number = 0;
   gastos: any[] = [];
   ingresos: any[] = [];
+  loadingIngresos : boolean = true;
+  loadingGastos : boolean = true;
 
   constructor( private saldoService : SaldoService  ) { }
 
   ngOnInit(): void {
 
     this.saldoService.getSaldo().subscribe( resp => this.saldo = resp );
-    this.saldoService.getGastos().subscribe( resp => this.gastos = resp );
-    this.saldoService.getingresos().subscribe( resp => this.ingresos = resp );
+    this.getGastos();
+    this.getIngresos();
 
   }
+
+
+  getGastos(){
+    this.loadingGastos = true;
+
+    this.saldoService.getGastos().subscribe( resp => {
+      this.gastos = resp;
+      this.loadingGastos = false;
+    } );
+  }
+
+
+  getIngresos(){
+    this.loadingIngresos = true;
+
+    this.saldoService.getingresos().subscribe( resp => {
+      this.ingresos = resp;
+      this.loadingIngresos = false;
+    } );
+  }
+
 
   eliminarGasto( id: string ){
     
     this.saldoService.eliminarGasto( id ).subscribe( resp => {
-      console.log(resp);
-
-      this.saldoService.getGastos().subscribe( resp => this.gastos = resp );
-      
+      this.getGastos();
     });
   }
 
   eliminarIngreso( id : string){
 
     this.saldoService.eliminarIngreso( id ).subscribe( resp => {
-      console.log(resp);
-      
-      this.saldoService.getingresos().subscribe( resp => this.ingresos = resp );
-      
+      this.getIngresos();
     });
 
   }

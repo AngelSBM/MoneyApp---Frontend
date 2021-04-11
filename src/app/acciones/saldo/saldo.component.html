@@ -30,7 +30,7 @@
 
             <span class="title">Gastos</span>
             
-            <ul class="list" *ngIf="gastos.length">
+            <ul class="list" *ngIf="!loadingGastos">
                 <li *ngFor="let gasto of gastos">
                     <div class="nombre">{{ gasto.gasto }}</div>
                     <span class="cantidad">{{ gasto.cantidad }}
@@ -39,13 +39,17 @@
                 </li>
             </ul>
 
+            <div class="div-loading" *ngIf="loadingGastos">
+                <i class="fas fa-spinner fa-spin fa-5x"></i>
+            </div>
+
         </div>
 
         <div class="container ingreso">
             
             <span class="title">Ingresos</span>
 
-            <ul class="list" *ngIf="ingresos.length">
+            <ul class="list" *ngIf="!loadingIngresos">
                 <li *ngFor="let ingreso of ingresos">
                     <div class="nombre">{{ ingreso.ingreso }}</div>
                     <span class="cantidad">{{ ingreso.cantidad }}
@@ -53,6 +57,10 @@
                     </span>                    
                 </li>
             </ul>
+
+            <div class="div-loading" *ngIf="loadingIngresos">
+                <i class="fas fa-spinner fa-spin fa-5x"></i>
+            </div>
 
         </div>
 

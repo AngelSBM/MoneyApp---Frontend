@@ -51,6 +51,8 @@
     justify-content: space-between;
     .container{
         width: 49%;
+        height: 400px;
+        overflow: auto;
         margin-top: 30px;
         border-radius: 5px;
         box-shadow: 0.1px 0.1px 8px #696969; 
