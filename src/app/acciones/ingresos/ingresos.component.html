@@ -1,7 +1,7 @@
 <div class="ingresos-container container">
 
     <div class="back">
-        <button (click)="regresar()">Regresar</button>
+        <button (click)="back()">Regresar</button>
     </div>
 
     <h5 class="title">Ingresos</h5>
@@ -23,13 +23,28 @@
                 <span class="title">
                     Seleccione la categoría del ingreso
                 </span>
-                <select formControlName="ingreso">
+                <select formControlName="ingreso" id="categories2">
                     <option value="">Selccionar cateogoria</option>
                     <option value="Ahorro">Ahorro</option>
                     <option value="Depósito">Depósitos</option>
                     <option value="Salario">Salario</option>
                     
                 </select>
+
+                <div class="pop-up">
+                    
+                    <a (click)="mostrar = !mostrar"> Añadir categoria </a>
+    
+                    <div *ngIf="mostrar" class="agregar-categoria">
+                        
+    
+                        <input type="text" class="addCat" id="nuevaCategoria2">
+                
+                        <button (click)="crearCategoria( $event )">Añadir</button>
+                
+                    </div>
+                    
+                </div>
             </div>
     
         </div>

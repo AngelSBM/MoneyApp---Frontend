@@ -38,7 +38,22 @@
             border: none;
             color: rgb(0, 0, 0);
             background-color: rgba(0, 0, 0, .4);
-        }           
+        }    
+        a,button {
+            width: 50%;
+            margin-top: 15px;
+            padding: 11px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            background-color: rgba(72, 136, 122, 0.7);
+            align-self: center;
+        }
+        .addCat{
+            padding: 8px 25px;
+            margin-top: 20px;
+        }       
     }            
 }
 
@@ -48,5 +63,23 @@
         font-size: 20px;
         border-radius: 5px;
         border: none;
+    }
+}
+
+
+
+.pop-up{
+    margin-top: 30px;
+    .agregar-categoria{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        input {
+            width: 60%;
+        }
+        button {
+            width: 20%;
+            padding: 10px;
+        }
     }
 }
