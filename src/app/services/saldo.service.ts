@@ -56,20 +56,52 @@ export class SaldoService {
   }
 
 
-  eliminarGasto( id ){
-    return this.http.delete( `${ base_url }/gasto`, {
-      headers: {
-        'id': id
-      }
-    } );
+  eliminarGasto( id, sumGasto: boolean ){
+
+    if( sumGasto ){
+    
+      return this.http.request( 'delete', `${ base_url }/gasto`, {
+        headers: {
+          'id': id
+        },
+        body:{
+          'sumGasto': true
+        }
+      } )
+
+    }else {
+
+      return this.http.delete( `${ base_url }/gasto`, {
+        headers: {
+          'id': id
+        }
+      });  
+
+    }
   }
 
-  eliminarIngreso( id ){
-    return this.http.delete( `${ base_url }/ingreso`, {
-      headers: {
-        'id': id
-      }
-    } );
+  eliminarIngreso( id, restarIngresoSaldo: boolean ){
+
+    if( restarIngresoSaldo ){
+    
+      return this.http.request( 'delete', `${ base_url }/ingreso`, {
+        headers: {
+          'id': id
+        },
+        body:{
+          'restIngreso': true
+        }
+      } )
+
+    }else {
+
+      return this.http.delete( `${ base_url }/ingreso`, {
+        headers: {
+          'id': id
+        }
+      });  
+
+    }
   }
 
 }

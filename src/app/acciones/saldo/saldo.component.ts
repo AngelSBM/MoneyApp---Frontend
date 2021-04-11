@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SaldoService } from 'src/app/services/saldo.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-saldo',
@@ -19,10 +20,17 @@ export class SaldoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.saldoService.getSaldo().subscribe( resp => this.saldo = resp );
+    this.getSaldo();
     this.getGastos();
     this.getIngresos();
 
+  }
+
+
+  getSaldo(){
+    this.saldoService.getSaldo().subscribe( resp => { 
+      this.saldo = resp;
+    });
   }
 
 
@@ -48,16 +56,116 @@ export class SaldoComponent implements OnInit {
 
   eliminarGasto( id: string ){
     
-    this.saldoService.eliminarGasto( id ).subscribe( resp => {
-      this.getGastos();
-    });
+    Swal.fire({
+      title: '¿Seguro?',
+      text: "¿Desea eliminar este gasto?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        Swal.fire({
+
+          title: 'Opciones',
+          text: "¿También desea que se le sume este gasto a su saldo actual?",
+          icon: 'info',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, sumarle este gasto al saldo también.'
+
+        }).then((result)=> {
+
+          if (result.isConfirmed){
+
+            this.saldoService.eliminarGasto( id, result.isConfirmed ).subscribe( resp => {
+              this.getGastos();
+              this.getSaldo();
+              Swal.fire('Gasto eliminado', 'Se ha eliminado el gasto correctamente y se ha actualizado el saldo', 'success');
+            });
+            
+          }else{
+
+            this.saldoService.eliminarGasto( id, result.isDenied ).subscribe( resp => {
+              this.getGastos();
+              this.getSaldo();
+              Swal.fire('Gasto eliminado', 'Se ha eliminado el gasto correctamente', 'success');
+            });
+
+          }
+
+        });
+
+        this.saldoService.getSaldo().subscribe( resp => this.saldo = resp );
+        
+      }else{
+
+        console.log(result.isDenied);
+        
+      }
+    })
+
   }
 
-  eliminarIngreso( id : string){
+  eliminarIngreso( id : string ){
 
-    this.saldoService.eliminarIngreso( id ).subscribe( resp => {
-      this.getIngresos();
-    });
+    Swal.fire({
+      title: '¿Seguro?',
+      text: "¿Desea eliminar este ingreso?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        Swal.fire({
+
+          title: 'Opciones',
+          text: "¿También desea que se le reste este ingreso a su saldo actual?",
+          icon: 'info',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, restarle este ingreso al saldo también'
+
+        }).then((result)=> {
+
+          if (result.isConfirmed){
+            this.saldoService.eliminarIngreso( id, result.isConfirmed ).subscribe( resp => {
+              this.getIngresos();
+              this.getSaldo();
+              Swal.fire('Ingreso eliminado', 'Se ha eliminado el ingreso correctamente y se ha actualizado el saldo', 'success');
+            });
+          }else{
+
+            this.saldoService.eliminarIngreso( id, result.isDenied ).subscribe( resp => {
+              this.getIngresos();
+              this.getSaldo();
+              Swal.fire('Ingreso eliminado', 'Se ha eliminado el ingreso correctamente', 'success');
+            });
+
+          }
+
+        });
+
+        this.saldoService.getSaldo().subscribe( resp => this.saldo = resp );
+        
+      }else{
+
+        console.log(result.isDenied);
+        
+      }
+    })
+
+
+    // this.saldoService.eliminarIngreso( id ).subscribe( resp => {
+    //   this.getIngresos();
+    // });
 
   }
 
