@@ -8,6 +8,7 @@ import { IngresosComponent } from './acciones/ingresos/ingresos.component';
 import { SaldoComponent } from './acciones/saldo/saldo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CurrencyPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,9 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [ CurrencyPipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

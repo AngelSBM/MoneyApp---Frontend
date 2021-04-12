@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SaldoService } from 'src/app/services/saldo.service';
@@ -12,11 +13,12 @@ export class SaldoComponent implements OnInit {
 
   saldo: number = 0;
   gastos: any[] = [];
-  ingresos: any[] = [];
+  ingresos: any[] = [];P
   loadingIngresos : boolean = true;
   loadingGastos : boolean = true;
 
-  constructor( private saldoService : SaldoService  ) { }
+  constructor( private saldoService : SaldoService,
+               private currencyPipe: CurrencyPipe  ) { }
 
   ngOnInit(): void {
 

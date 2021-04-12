@@ -1,11 +1,12 @@
-<div class="saldo-container container">
+<div class="saldo-container container fast">
 
     <h3 class="title">Saldo:</h3>
 
     <form>
 
         <div class="input">
-            <input [(ngModel)]="saldo" [ngModelOptions]="{standalone: true}"  type="text" >
+            <input [ngModel]="saldo |currency: 'DOP'" [ngModelOptions]="{standalone: true, updateOn:'blur'}" (ngModelChange)="saldo=$event" type="text" readonly>
+            <span><i class="fas fa-cash-register"></i></span>
         </div>
 
     </form>
@@ -24,7 +25,7 @@
 
     </div>
 
-    <div class="gastos-ingresos-container">
+    <div class="gastos-ingresos-container fast">
         
         <div class="container gasto">
 
@@ -33,7 +34,7 @@
             <ul class="list" *ngIf="!loadingGastos">
                 <li *ngFor="let gasto of gastos">
                     <div class="nombre">{{ gasto.gasto }}</div>
-                    <span class="cantidad">{{ gasto.cantidad }}
+                    <span class="cantidad">{{ gasto.cantidad | currency: 'DOP' }}
                         <button (click)="eliminarGasto( gasto._id )"><i class="fas fa-minus"></i></button>
                     </span>                    
                 </li>
@@ -45,14 +46,14 @@
 
         </div>
 
-        <div class="container ingreso">
+        <div class="container ingreso fast">
             
             <span class="title">Ingresos</span>
 
             <ul class="list" *ngIf="!loadingIngresos">
                 <li *ngFor="let ingreso of ingresos">
                     <div class="nombre">{{ ingreso.ingreso }}</div>
-                    <span class="cantidad">{{ ingreso.cantidad }}
+                    <span class="cantidad">{{ ingreso.cantidad | currency: 'DOP' }}
                         <button (click)="eliminarIngreso( ingreso._id )"><i class="fas fa-minus"></i></button>
                     </span>                    
                 </li>

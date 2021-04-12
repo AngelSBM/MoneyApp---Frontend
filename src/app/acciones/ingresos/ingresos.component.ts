@@ -48,7 +48,7 @@ export class IngresosComponent implements OnInit {
 
       setTimeout(() => {
         this.back();
-      }, 2000);
+      }, 1000);
 
     });
     

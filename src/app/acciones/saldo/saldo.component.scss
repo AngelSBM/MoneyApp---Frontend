@@ -9,6 +9,7 @@
 .input{
     margin-bottom: 100px;
     margin-top: 40px;
+    position: relative;
     input{
         width: 90%;
         padding: 15px 25px;
@@ -18,7 +19,14 @@
         background-color: rgba(18, 18, 19, 0.432);
         color: white;
         font-weight: bold;
-        box-shadow: 0.1px 0.1px 3px #696969; 
+        box-shadow: 0.1px 0.1px 3px #a3a3a3; 
+    }
+    span{
+        position: absolute;
+        top: 10px;
+        right: 45px;
+        color: rgb(173, 173, 173);
+        font-size: 30px;
     }
 }
     
@@ -30,9 +38,10 @@
         button {
             padding: 10px;
             font-size: 22px;
-            border-radius: 10%;
+            border-radius: 6px;
             border: none;
             color: white;
+            cursor: pointer;
         }
         .ingreso{
             background-color: rgb(13, 126, 41);
@@ -67,8 +76,17 @@
                 display: flex;
                 justify-content: space-around;
                 font-size: 19px;
+                border-bottom: 1px solid rgba(187, 187, 187, 0.315);
                 .cantidad{
                     font-weight: bolder;
+                }
+                button{
+                    margin-left: 3px;
+                    padding: 3px 4px;
+                    border-radius: 100%;
+                    border: none;
+                    background-color: rgba(196, 190, 190, 0.74);
+                    cursor: pointer;
                 }
             }
         }

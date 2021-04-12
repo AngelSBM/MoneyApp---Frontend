@@ -1,7 +1,7 @@
 <div class="ingresos-container container">
 
     <div class="back">
-        <button (click)="back()">Regresar</button>
+        <button (click)="back()"><i class="far fa-hand-point-left"></i> Regresar</button>
     </div>
 
     <h5 class="title">Gastos</h5>
@@ -16,28 +16,42 @@
                 <span class="title">
                     Digíte la cantidad
                 </span>
-                <input type="number" formControlName="cantidad">
+                <div class="input-container">
+                    <input type="number" formControlName="cantidad">
+                    <span>
+                        <i class="fas fa-coins"></i>
+                    </span>
+                </div>
             </div>
     
             <div class="input">
                 <span class="title">
                     Seleccione la categoría del gasto
                 </span>
-                <select formControlName="gasto" id="categories">
-                    <option value="">Selccionar cateogoria</option>
-                    <option value="Autómovil">Automóvil</option>
-                    <option value="Casa">Casa</option>
-                    <option value="Comida">Comida</option>
-                    <option value="Comunicaciones">Comunicaciones</option>
-                    <option value="Deportes">Deportes</option>
-                    <option value="Facturas">Facturas</option>
-                    <option value="Higiene">Higiene</option>
-                    <option value="Mascotas">Mascotas</option>
-                    <option value="Regalos">Regalos</option>
-                    <option value="Restaurante">Restaurante</option>
-                    <option value="Ropa">Ropa</option>
-                    <option value="salud">Salud</option>
-                </select>
+
+                <div class="input-container">
+                    <select formControlName="gasto" id="categories">
+                        <option value="">Selccionar cateogoria</option>
+                        <option value="Autómovil">Automóvil</option>
+                        <option value="Casa">Casa</option>
+                        <option value="Comida">Comida</option>
+                        <option value="Comunicaciones">Comunicaciones</option>
+                        <option value="Deportes">Deportes</option>
+                        <option value="Facturas">Facturas</option>
+                        <option value="Higiene">Higiene</option>
+                        <option value="Mascotas">Mascotas</option>
+                        <option value="Regalos">Regalos</option>
+                        <option value="Restaurante">Restaurante</option>
+                        <option value="Ropa">Ropa</option>
+                        <option value="salud">Salud</option>
+                    </select>
+
+                    <span>
+                        <i class="fab fa-pagelines"></i>
+                    </span>
+
+                </div>
+
 
                 <div class="pop-up">
                     

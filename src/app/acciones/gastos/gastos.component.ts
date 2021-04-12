@@ -52,7 +52,7 @@ export class GastosComponent implements OnInit {
 
       setTimeout(() => {
         this.back();
-      }, 2000);
+      }, 1000);
 
     });
 
