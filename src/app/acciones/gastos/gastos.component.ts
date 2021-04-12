@@ -15,6 +15,7 @@ export class GastosComponent implements OnInit {
   public inputsGastos : FormGroup;
   public valid : boolean = true;
   public categoria : string;
+  public invalidCat: boolean = false;
 
   constructor( private fb: FormBuilder,
                private saldoService: SaldoService,
@@ -59,45 +60,51 @@ export class GastosComponent implements OnInit {
   }
 
 
-
-  crearCategoria(e){
-
-    e.preventDefault();
-
-    // Selector del texto del input añadirCategoria
-    const categoriaInput = (<HTMLInputElement>document.getElementById('nuevaCategoria')).value;    
-
-
-    if( categoriaInput === '' ){
-      return Swal.fire('ERROR', 'No puede añadir una categoría sin nombre', 'error');
-    }
-
-    //Crear etiqueta option con contenga la categoria escrita
-    const nuevaOpcion = document.createElement('option');
-    nuevaOpcion.value = categoriaInput;
-    nuevaOpcion.innerHTML = categoriaInput;
-
-
-    const categories = (<HTMLInputElement>document.getElementById('categories'));
-    const position = categories.children.length;
-    categories[position] = nuevaOpcion; 
-
-    this.inputsGastos.value.gasto = categoriaInput;
-    categories.value = categoriaInput;
-    
-    
-    this.mostrar = true;
-
-  }
-
   back(){
     this.location.back();
   }
 
-  agregarCategoria( e: Event, categoria: string ){
+  selectCategoria( e: Event, categoria: string ){
 
     e.preventDefault();
     this.categoria = categoria;
+
+  }
+
+
+  open( e: Event ){
+    e.preventDefault();
+  }
+
+  crearCategoria( nombreCategoria: string ){
+
+    if( nombreCategoria === '' ){
+      this.invalidCat = true;
+      return;
+    }
+
+    console.log( nombreCategoria );
+    const categorias = document.querySelector('#buttons');
+
+    const newCategoria = document.createElement('button');
+    newCategoria.textContent = nombreCategoria;
+    newCategoria.classList.add('newCatbutton')
+    newCategoria.onclick = (e) => {
+      this.selectCategoria( e , nombreCategoria)
+    }
+
+    categorias.appendChild(newCategoria);
+    
+
+    document.getElementById('cerrarModal').click();
+    console.log(document.getElementById('cerrarModal'));
+
+    this.invalidCat = false;
+    Swal.fire('Añadido', `Categoría ${ nombreCategoria } añadida`, 'info');
+
+    this.categoria = nombreCategoria;
+    
+    
 
   }
 

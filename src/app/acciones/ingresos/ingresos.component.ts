@@ -13,7 +13,8 @@ export class IngresosComponent implements OnInit {
 
   public inputsIngresos : FormGroup;
   public valid : boolean = true;
-  public mostrar: boolean = false;
+  public categoria : string;
+  public invalidCat: boolean = false;
 
   constructor( private fb: FormBuilder,
                private saldoService: SaldoService,
@@ -37,12 +38,15 @@ export class IngresosComponent implements OnInit {
    
     const { ingreso, cantidad } = this.inputsIngresos.value;
 
-    const registroGasto = {
+    const registroIngreso = {
       ingreso,
       cantidad 
     }
 
-    this.saldoService.agregarIngreso( registroGasto ).subscribe( resp => {
+    console.log( registroIngreso );
+    
+
+    this.saldoService.agregarIngreso( registroIngreso ).subscribe( resp => {
       
       Swal.fire('Ingreso registrado', 'El ingreso se ha registrado correctamente', 'success');
 
@@ -55,38 +59,52 @@ export class IngresosComponent implements OnInit {
   }
 
 
-  crearCategoria(e){
+  back(){
+    this.location.back()
+  }
+
+  selectCategoria( e: Event, categoria: string ){
 
     e.preventDefault();
-
-    // Selector del texto del input añadirCategoria
-    const categoriaInput = (<HTMLInputElement>document.getElementById('nuevaCategoria2')).value;    
-
-
-    if( categoriaInput === '' ){
-      return Swal.fire('ERROR', 'No puede añadir una categoría sin nombre', 'error');
-    }
-
-    //Crear etiqueta option con contenga la categoria escrita
-    const nuevaOpcion = document.createElement('option');
-    nuevaOpcion.value = categoriaInput;
-    nuevaOpcion.innerHTML = categoriaInput;
-
-
-    const categories = (<HTMLInputElement>document.getElementById('categories2'));
-    const position = categories.children.length;
-    categories[position] = nuevaOpcion; 
-
-    this.inputsIngresos.value.gasto = categoriaInput;
-    categories.value = categoriaInput;
-    
-    
-    this.mostrar = true;
+    this.categoria = categoria;
 
   }
 
-  back(){
-    this.location.back()
+
+  open( e: Event ){
+    e.preventDefault();
+  }
+
+  crearCategoria( nombreCategoria: string ){
+
+    if( nombreCategoria === '' ){
+      this.invalidCat = true;
+      return;
+    }
+
+    console.log( nombreCategoria );
+    const categorias = document.querySelector('#buttonsIn');
+
+    const newCategoria = document.createElement('button');
+    newCategoria.textContent = nombreCategoria;
+    newCategoria.classList.add('newCatbuttonIn')
+    newCategoria.onclick = (e) => {
+      this.selectCategoria( e , nombreCategoria)
+    }
+
+    categorias.appendChild(newCategoria);
+    
+
+    document.getElementById('cerrarModalIn').click();
+    console.log(document.getElementById('cerrarModalIn'));
+
+    this.invalidCat = false;
+    Swal.fire('Añadido', `Categoría ${ nombreCategoria } añadida`, 'info');
+
+    this.categoria = nombreCategoria;
+    
+    
+
   }
 
 }

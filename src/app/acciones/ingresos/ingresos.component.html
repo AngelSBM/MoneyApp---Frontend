@@ -26,42 +26,30 @@
     
             <div class="input">
                 <span class="title">
-                    Seleccione la categoría del ingreso
+                    Categoría del ingreso
                 </span>                
 
                 <div class="input-container">
-                    <select formControlName="ingreso" id="categories2">
-                        <option value="">Selccionar cateogoria</option>
-                        <option value="Ahorro">Ahorro</option>
-                        <option value="Depósito">Depósitos</option>
-                        <option value="Salario">Salario</option>
-                        
-                    </select>
+                    <input type="text" formControlName="ingreso" [(ngModel)]="categoria">
                     <span>
                         <i class="fab fa-pagelines"></i>
                     </span>
+
+                    <button class="category" (click)="open( $event )" data-bs-toggle="modal" data-bs-target="#exampleModalIn" ><i class="fas fa-plus"></i></button>
                 </div>
 
-                <div class="pop-up">
-                    
-                    <a (click)="mostrar = !mostrar"> Añadir categoria </a>
-    
-                    <div *ngIf="mostrar" class="agregar-categoria">
-                        
-    
-                        <input type="text" class="addCat" id="nuevaCategoria2">
-                
-                        <button (click)="crearCategoria( $event )">Añadir</button>
-                
-                    </div>
-                    
-                </div>
             </div>
     
         </div>
 
-        <div class="alert" *ngIf="!valid">
-            TODOS LOS CAMPOS SON OBLIGATIOS
+        <div class="buttons-cat">
+            <div class="buttons" id="buttonsIn">
+                <button type="button" (click)="selectCategoria( $event, 'Salario')"> Salario </button>
+                <button type="button" (click)="selectCategoria( $event, 'Depósito')"> Depósito </button>
+                <button type="button" (click)="selectCategoria( $event, 'Cuenta por Cobrar')"> Cuenta por Cobrar </button>
+                <button type="button" (click)="selectCategoria( $event, 'Pasivos')"> Pasivos </button>
+                
+            </div>
         </div>
 
 
@@ -74,3 +62,24 @@
 
 </div>
 
+
+
+
+<div class="modal fade" id="exampleModalIn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Añadir categoría</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <input #cat type="text" class="form-control" id="exampleFormControlInput1" placeholder="Escriba la categoría...">
+            <p *ngIf="invalidCat" class="mt-2 w-100 py-2 bg-danger text-white text-center rounded-3">Categoria vacía</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cerrarModalIn" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" (click)="crearCategoria( cat.value )" class="btn btn-success">Agregar categoria</button>
+        </div>
+      </div>
+    </div>
+  </div>
