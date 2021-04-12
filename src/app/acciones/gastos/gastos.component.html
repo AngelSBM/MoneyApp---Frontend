@@ -26,46 +26,19 @@
     
             <div class="input">
                 <span class="title">
-                    Seleccione la categoría del gasto
+                    Categoría del gasto
                 </span>
 
                 <div class="input-container">
-                    <select formControlName="gasto" id="categories">
-                        <option value="">Selccionar cateogoria</option>
-                        <option value="Autómovil">Automóvil</option>
-                        <option value="Casa">Casa</option>
-                        <option value="Comida">Comida</option>
-                        <option value="Comunicaciones">Comunicaciones</option>
-                        <option value="Deportes">Deportes</option>
-                        <option value="Facturas">Facturas</option>
-                        <option value="Higiene">Higiene</option>
-                        <option value="Mascotas">Mascotas</option>
-                        <option value="Regalos">Regalos</option>
-                        <option value="Restaurante">Restaurante</option>
-                        <option value="Ropa">Ropa</option>
-                        <option value="salud">Salud</option>
-                    </select>
-
+                    
+                    <input type="text" formControlName="gasto" [(ngModel)]="categoria">
+                    
                     <span>
                         <i class="fab fa-pagelines"></i>
                     </span>
 
-                </div>
+                    <button class="category">+</button>
 
-
-                <div class="pop-up">
-                    
-                    <a (click)="mostrar = !mostrar"> Añadir categoria </a>
-    
-                    <div *ngIf="mostrar" class="agregar-categoria">
-                        
-    
-                        <input type="text" class="addCat" id="nuevaCategoria">
-                
-                        <button (click)="crearCategoria( $event )">Añadir</button>
-                
-                    </div>
-                    
                 </div>
 
 
@@ -73,10 +46,23 @@
     
         </div>
 
-        <div class="alert" *ngIf="!valid">
-            TODOS LOS CAMPOS SON OBLIGATIOS
+        
+        <div class="buttons-cat">
+            <div class="buttons">
+                <button type="button" (click)="agregarCategoria( $event, 'Automóvil')"> Automóvil </button>
+                <button type="button" (click)="agregarCategoria( $event, 'Casa')"> Casa</button>
+                <button type="button" (click)="agregarCategoria( $event, 'Comida')"> Comida </button>
+                <button type="button" (click)="agregarCategoria( $event, 'Comuniaciones')"> Comuniaciones </button>
+                <button type="button" (click)="agregarCategoria( $event, 'Deportes')"> Deportes </button>
+                <button type="button" (click)="agregarCategoria( $event, 'Higiene')"> Higiene </button>
+                <button type="button" (click)="agregarCategoria( $event, 'Facturas')"> Facturas </button>
+                <button type="button" (click)="agregarCategoria( $event, 'Mascostas')"> Mascostas </button>
+                <button type="button" (click)="agregarCategoria( $event, 'Regalos')"> Regalos </button>
+                <button type="button" (click)="agregarCategoria( $event, 'Restaurante')"> Restaurante </button>
+                <button type="button" (click)="agregarCategoria( $event, 'Ropa')"> Ropa </button>
+                <button type="button" (click)="agregarCategoria( $event, 'Salud')"> Salud </button>
+            </div>
         </div>
-
 
         <div class="button">
             <button type="submit">Añadir gasto</button>

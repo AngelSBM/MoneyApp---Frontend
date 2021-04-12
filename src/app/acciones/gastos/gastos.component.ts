@@ -14,7 +14,7 @@ export class GastosComponent implements OnInit {
 
   public inputsGastos : FormGroup;
   public valid : boolean = true;
-  public mostrar: boolean = false;
+  public categoria : string;
 
   constructor( private fb: FormBuilder,
                private saldoService: SaldoService,
@@ -92,6 +92,13 @@ export class GastosComponent implements OnInit {
 
   back(){
     this.location.back();
+  }
+
+  agregarCategoria( e: Event, categoria: string ){
+
+    e.preventDefault();
+    this.categoria = categoria;
+
   }
 
 }
