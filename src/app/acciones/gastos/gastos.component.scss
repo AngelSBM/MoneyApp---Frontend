@@ -89,6 +89,8 @@
     background-color: rgba(36, 36, 36, 0.315);
     border-radius: 6px;
     margin-bottom: 30px;
+    height: 250px;
+    overflow: auto;
     .buttons{
         display: flex;
         justify-content: space-around;
@@ -119,22 +121,48 @@
 
 
 
-.pop-up{
-    margin-top: 30px;
-    .agregar-categoria{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        input {
-            width: 60%;
+.all{
+    display: flex;
+    .ingresos-container{
+        height: 100vh;
+    }
+    .sidebar{
+        width: 20%;
+        background-color: rgba(145, 46, 46, 0.534);
+        height: 100vh;
+        padding: 20px;
+        .saldo{
+            margin-top: 30px;
+            text-align: center;
+            font-size: 24px;
+            color: black;
         }
-        button {
-            width: 20%;
-            padding: 10px;
+        .gastos{
+            text-align: center;
+            .title{
+                margin-top: 20px;
+                font-size: 17px;
+            }
+            ul {
+                text-align: center;
+                list-style: none;
+                margin-top: 20px;
+                padding: 0;
+                li{
+                    padding: 17px 0;
+                    display: flex;
+                    justify-content: space-around;
+                    font-size: 16px;
+                    border-bottom: 1px solid rgba(85, 29, 29, 0.13);
+                    .cantidad{
+                        font-weight: bolder;
+                    }
+                    
+                }
+            }
         }
     }
 }
-
 
 
 

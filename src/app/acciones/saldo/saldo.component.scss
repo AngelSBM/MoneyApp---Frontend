@@ -24,7 +24,7 @@
     span{
         position: absolute;
         top: 10px;
-        right: 45px;
+        right: 75px;
         color: rgb(173, 173, 173);
         font-size: 30px;
     }
@@ -81,8 +81,9 @@
                     font-weight: bolder;
                 }
                 button{
+                    font-size: 14px;
                     margin-left: 3px;
-                    padding: 3px 4px;
+                    padding: 1px 5px;
                     border-radius: 100%;
                     border: none;
                     background-color: rgba(196, 190, 190, 0.74);

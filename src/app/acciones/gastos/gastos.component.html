@@ -1,79 +1,106 @@
-<div class="ingresos-container container">
+<div class="all">
+    
+    <div class="sidebar">
+    
+        <div class="saldo">
+            <span>
+                Saldo: <strong>{{ saldo | currency: 'DOP' }}</strong>
+            </span>
+        </div>
 
-    <div class="back">
-        <button (click)="back()"><i class="far fa-hand-point-left"></i> Regresar</button>
+        <div class="gastos">
+
+            <h5 class="title">Gastos registrados</h5>
+
+            <ul class="list" *ngIf="gastos.length !== 0">
+                <li *ngFor="let gasto of gastos">
+                    <div class="nombre">{{ gasto.gasto }}</div>
+                    <span class="cantidad">
+                        {{ gasto.cantidad | currency: 'DOP' }}
+                    </span>                    
+                </li>
+            </ul>
+        </div>
+
     </div>
 
-    <h5 class="title">Gastos</h5>
-
-    <form 
-            [(formGroup)]="inputsGastos"
-            (ngSubmit)="agregarGasto()">
-
-        <div class="inputs">
-
-            <div class="input">
-                <span class="title">
-                    Digíte la cantidad
-                </span>
-                <div class="input-container">
-                    <input type="number" class="input-a" formControlName="cantidad">
-                    <span>
-                        <i class="fas fa-coins"></i>
-                    </span>
-                </div>
-            </div>
+    <div class="ingresos-container container">
     
-            <div class="input">
-                <span class="title">
-                    Categoría del gasto
-                </span>
-
-                <div class="input-container">
-                    
-                    <input type="text" formControlName="gasto" [(ngModel)]="categoria" readonly>
-                    
-                    <span>
-                        <i class="fab fa-pagelines"></i>
-                    </span>
-
-                    <button class="category" (click)="open( $event )" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="fas fa-plus"></i></button>
-                    
-
-                </div>
-
-
-            </div>
-    
+        <div class="back">
+            <button (click)="back()"><i class="far fa-hand-point-left"></i> Regresar</button>
         </div>
-
+    
+        <h5 class="title">Gastos</h5>
+    
+        <form 
+                [(formGroup)]="inputsGastos"
+                (ngSubmit)="agregarGasto()">
+    
+            <div class="inputs">
+    
+                <div class="input">
+                    <span class="title">
+                        Digíte la cantidad
+                    </span>
+                    <div class="input-container">
+                        <input type="number" class="input-a" formControlName="cantidad">
+                        <span>
+                            <i class="fas fa-coins"></i>
+                        </span>
+                    </div>
+                </div>
         
-        <div class="buttons-cat">
-            <div class="buttons" id="buttons">
-                <button type="button" (click)="selectCategoria( $event, 'Automóvil')"> Automóvil </button>
-                <button type="button" (click)="selectCategoria( $event, 'Casa')"> Casa</button>
-                <button type="button" (click)="selectCategoria( $event, 'Comida')"> Comida </button>
-                <button type="button" (click)="selectCategoria( $event, 'Comuniaciones')"> Comuniaciones </button>
-                <button type="button" (click)="selectCategoria( $event, 'Deportes')"> Deportes </button>
-                <button type="button" (click)="selectCategoria( $event, 'Higiene')"> Higiene </button>
-                <button type="button" (click)="selectCategoria( $event, 'Facturas')"> Facturas </button>
-                <button type="button" (click)="selectCategoria( $event, 'Mascostas')"> Mascostas </button>
-                <button type="button" (click)="selectCategoria( $event, 'Regalos')"> Regalos </button>
-                <button type="button" (click)="selectCategoria( $event, 'Restaurante')"> Restaurante </button>
-                <button type="button" (click)="selectCategoria( $event, 'Ropa')"> Ropa </button>
-                <button type="button" (click)="selectCategoria( $event, 'Salud')"> Salud </button>
-            </div>
-        </div>
-
-        <div class="button">
-            <button type="submit">Añadir gasto</button>
-        </div>
-
-    </form>
+                <div class="input">
+                    <span class="title">
+                        Categoría del gasto
+                    </span>
     
+                    <div class="input-container">
+                        
+                        <input type="text" formControlName="gasto" [(ngModel)]="categoria" readonly>
+                        
+                        <span>
+                            <i class="fab fa-pagelines"></i>
+                        </span>
+    
+                        <button class="category" (click)="open( $event )" data-bs-toggle="modal" data-bs-target="#exampleModal" ><i class="fas fa-plus"></i></button>
+                        
+    
+                    </div>
+    
+    
+                </div>
+        
+            </div>
+    
+            
+            <div class="buttons-cat">
+                <div class="buttons" id="buttons">
+                    <button type="button" (click)="selectCategoria( $event, 'Automóvil')"> Automóvil </button>
+                    <button type="button" (click)="selectCategoria( $event, 'Casa')"> Casa</button>
+                    <button type="button" (click)="selectCategoria( $event, 'Comida')"> Comida </button>
+                    <button type="button" (click)="selectCategoria( $event, 'Comuniaciones')"> Comuniaciones </button>
+                    <button type="button" (click)="selectCategoria( $event, 'Deportes')"> Deportes </button>
+                    <button type="button" (click)="selectCategoria( $event, 'Higiene')"> Higiene </button>
+                    <button type="button" (click)="selectCategoria( $event, 'Facturas')"> Facturas </button>
+                    <button type="button" (click)="selectCategoria( $event, 'Mascostas')"> Mascostas </button>
+                    <button type="button" (click)="selectCategoria( $event, 'Regalos')"> Regalos </button>
+                    <button type="button" (click)="selectCategoria( $event, 'Restaurante')"> Restaurante </button>
+                    <button type="button" (click)="selectCategoria( $event, 'Ropa')"> Ropa </button>
+                    <button type="button" (click)="selectCategoria( $event, 'Salud')"> Salud </button>
+                </div>
+            </div>
+    
+            <div class="button">
+                <button type="submit">Añadir gasto</button>
+            </div>
+    
+        </form>
+        
+    
+    </div>  
 
 </div>
-
 
   
   <!-- Modal -->

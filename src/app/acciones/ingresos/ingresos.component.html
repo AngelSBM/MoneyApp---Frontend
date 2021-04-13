@@ -1,68 +1,95 @@
-<div class="ingresos-container container">
 
-    <div class="back">
-        <button (click)="back()"><i class="far fa-hand-point-left"></i> Regresar</button>
+<div class="all">
+    
+    <div class="sidebar">
+
+        <div class="saldo">
+            <span>
+                Saldo: <strong>{{ saldo | currency: 'DOP' }}</strong>
+            </span>
+        </div>
+
+        <div class="ingresos">
+
+            <h5 class="title"> Ingresos registrados</h5>
+
+            <ul class="list" *ngIf="ingresos.length !== 0">
+                <li *ngFor="let ingreso of ingresos">
+                    <div class="nombre">{{ ingreso.ingreso }}</div>
+                    <span class="cantidad">
+                        {{ ingreso.cantidad | currency: 'DOP' }}
+                    </span>                    
+                </li>
+            </ul>
+        </div>
+
     </div>
 
-    <h5 class="title">Ingresos</h5>
-
-    <form 
-            [formGroup]="inputsIngresos"
-            (ngSubmit)="agregarIngreso()">
-
-        <div class="inputs">
-
-            <div class="input">
-                <span class="title">
-                    Digíte la cantidad
-                </span>
-                <div class="input-container">
-                    <input type="number" formControlName="cantidad">
-                    <span>
-                        <i class="fas fa-coins"></i>
+    <div class="ingresos-container container">
+    
+        <div class="back">
+            <button (click)="back()"><i class="far fa-hand-point-left"></i> Regresar</button>
+        </div>
+    
+        <h5 class="title">Ingresos</h5>
+    
+        <form 
+                [formGroup]="inputsIngresos"
+                (ngSubmit)="agregarIngreso()">
+    
+            <div class="inputs">
+    
+                <div class="input">
+                    <span class="title">
+                        Digíte la cantidad
                     </span>
+                    <div class="input-container">
+                        <input type="number" formControlName="cantidad">
+                        <span>
+                            <i class="fas fa-coins"></i>
+                        </span>
+                    </div>
+                </div>
+        
+                <div class="input">
+                    <span class="title">
+                        Categoría del ingreso
+                    </span>                
+    
+                    <div class="input-container">
+                        <input type="text" formControlName="ingreso" [(ngModel)]="categoria" readonly>
+                        <span>
+                            <i class="fab fa-pagelines"></i>
+                        </span>
+    
+                        <button class="category" (click)="open( $event )" data-bs-toggle="modal" data-bs-target="#exampleModalIn" ><i class="fas fa-plus"></i></button>
+                    </div>
+    
+                </div>
+        
+            </div>
+    
+            <div class="buttons-cat">
+                <div class="buttons" id="buttonsIn">
+                    <button type="button" (click)="selectCategoria( $event, 'Salario')"> Salario </button>
+                    <button type="button" (click)="selectCategoria( $event, 'Depósito')"> Depósito </button>
+                    <button type="button" (click)="selectCategoria( $event, 'Cuenta por Cobrar')"> Cuenta por Cobrar </button>
+                    <button type="button" (click)="selectCategoria( $event, 'Pasivos')"> Pasivos </button>
+                    
                 </div>
             </div>
     
-            <div class="input">
-                <span class="title">
-                    Categoría del ingreso
-                </span>                
-
-                <div class="input-container">
-                    <input type="text" formControlName="ingreso" [(ngModel)]="categoria">
-                    <span>
-                        <i class="fab fa-pagelines"></i>
-                    </span>
-
-                    <button class="category" (click)="open( $event )" data-bs-toggle="modal" data-bs-target="#exampleModalIn" ><i class="fas fa-plus"></i></button>
-                </div>
-
+    
+            <div class="button">
+                <button type="submit">Añadir ingreso</button>
             </div>
     
-        </div>
-
-        <div class="buttons-cat">
-            <div class="buttons" id="buttonsIn">
-                <button type="button" (click)="selectCategoria( $event, 'Salario')"> Salario </button>
-                <button type="button" (click)="selectCategoria( $event, 'Depósito')"> Depósito </button>
-                <button type="button" (click)="selectCategoria( $event, 'Cuenta por Cobrar')"> Cuenta por Cobrar </button>
-                <button type="button" (click)="selectCategoria( $event, 'Pasivos')"> Pasivos </button>
-                
-            </div>
-        </div>
-
-
-        <div class="button">
-            <button type="submit">Añadir ingreso</button>
-        </div>
-
-    </form>
-   
+        </form>
+       
+    
+    </div>
 
 </div>
-
-
 
 
 <div class="modal fade" id="exampleModalIn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -15,6 +15,8 @@ export class IngresosComponent implements OnInit {
   public valid : boolean = true;
   public categoria : string;
   public invalidCat: boolean = false;
+  public saldo : number = 0;
+  public ingresos : [] = [];
 
   constructor( private fb: FormBuilder,
                private saldoService: SaldoService,
@@ -25,7 +27,16 @@ export class IngresosComponent implements OnInit {
     this.inputsIngresos = this.fb.group({
       ingreso: ['', Validators.required],
       cantidad: ['', Validators.required]
-    })
+    });
+
+    this.saldoService.getSaldo().subscribe( resp => {
+      this.saldo = resp;
+    });
+
+    this.saldoService.getingresos().subscribe( resp => {
+      this.ingresos = resp;
+    });
+
 
   }
 

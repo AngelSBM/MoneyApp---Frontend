@@ -16,6 +16,8 @@ export class GastosComponent implements OnInit {
   public valid : boolean = true;
   public categoria : string;
   public invalidCat: boolean = false;
+  public saldo : number = 0;
+  public gastos : [] = [];
 
   constructor( private fb: FormBuilder,
                private saldoService: SaldoService,
@@ -27,6 +29,14 @@ export class GastosComponent implements OnInit {
       gasto: ['', Validators.required],
       cantidad: ['', Validators.required]
     })
+
+    this.saldoService.getSaldo().subscribe( ( resp => {
+      this.saldo = resp
+    } ) );
+
+    this.saldoService.getGastos().subscribe( resp => {
+      this.gastos = resp;
+    });
 
   }
 
